@@ -1,0 +1,29 @@
+/* Frank Emanuel */
+
+p {
+    border: brown 23px dashed;
+    border-width: 10px 20px 30px 40px;
+    text-align: center;
+    font-size: 24pt;
+    padding: 10px;
+}
+
+td {
+    background-color: rgb(231, 77, 174);
+    padding: 14px 26pt;
+}
+
+table {
+    /* centered table */
+    margin: 0px auto;
+    font-size: 13pt;
+    font-weight: bolder;
+    font-family: Arial, sans-serif;
+}
+
+td:nth-child(2) {
+
+    color: blue;
+    background-color: orange;
+
+}
