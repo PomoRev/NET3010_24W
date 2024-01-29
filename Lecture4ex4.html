@@ -18,7 +18,7 @@
 			
 			NAV {
 				background-color : blue;
-				grid-area: 2/1/4/2;
+				grid-area: 2/1/3/2;
 			}
 			
 			.navigation {
@@ -35,7 +35,8 @@
 			.image {
 				float: right;
 				justify-self : center;
-				width : 400px;
+				width : 200px;
+				grid-area: 3/1/4/2;
 			}
 			
 			FOOTER {
@@ -49,6 +50,13 @@
 			
 			BUTTON:hover {
 				background-color : purple;
+			}
+
+			.boxy {
+
+				background-color: peachpuff;
+				grid-area: 3/2/4/3;
+				z-index: -3;
 			}
 			
 		</STYLE>
@@ -79,6 +87,8 @@
 			<FOOTER>
 				Frank Emanuel can be reached at <A HREF="mailto:emanuef@algonquincollege.com">emanuef@algonquincollege.com</A>
 			</FOOTER>
+
+			<div class="boxy">I am a box!</div>
 		</DIV>
 	</BODY>
 </HTML>

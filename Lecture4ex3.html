@@ -6,9 +6,9 @@
 			.gridcontainer {
 				display: grid;
 				grid-template-areas : 	"head head head"
-										"nav image image"
-										"nav content content"
-										"footer footer footer";
+										"content none nav"
+										"content image nav"
+										"content footer footer";
 				grid-template-columns : 1fr 3fr 3fr;
 			}
 			
@@ -31,7 +31,7 @@
 			.image {
 				grid-area : image;
 				justify-self : center;
-				width : 400px;
+				width : 200px;
 			}
 			
 			FOOTER {
@@ -45,7 +45,25 @@
 		<DIV class="gridcontainer">
 			<HEADER>Top of the Page</HEADER>
 
-			<DIV class="content">Some stuff goes here</DIV>
+			<DIV class="content">
+				<p>
+					The Iron Golem is a formidable creature often encountered
+					in various fantasy settings, particularly within the realms
+					of role-playing games, literature, and folklore. It is
+					typically depicted as a massive humanoid construct crafted
+					entirely from iron or other metals, animated through
+					powerful magic or advanced technology. The Iron Golem's
+					primary purpose is often that of a guardian or protector,
+					tasked with defending valuable treasures, ancient ruins, or
+					powerful wizards' strongholds.
+				</p>
+				
+				<!-- In many narratives, the Iron Golem possesses immense strength and durability, capable of withstanding tremendous amounts of damage and delivering devastating blows to its foes. Its metallic form renders it immune to many conventional forms of attack, making it a daunting adversary for adventurers and heroes seeking to overcome its defenses.
+				
+				Despite its imposing appearance and formidable abilities, the Iron Golem is often portrayed as a creature lacking in agility and intelligence, relying solely on its programmed directives or the commands of its master. However, some interpretations imbue the Iron Golem with a degree of autonomy or sentience, exploring themes of free will and the nature of artificial life.
+				
+				Encounters with Iron Golems often require clever strategies and resourcefulness, as brute force alone may prove insufficient to defeat these towering guardians. Whether serving as stalwart defenders or enigmatic creations of ancient lore, Iron Golems stand as iconic symbols of strength, resilience, and the mysteries of arcane or technological mastery in fantastical worlds. -->
+			</DIV>
 			<IMG src="irongolem.png" alt="" class="image">
 			<FOOTER>After all this is it</FOOTER>
 			<NAV>Button List</NAV>
