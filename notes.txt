@@ -39,3 +39,71 @@ and resources to help those affected by problem gambling.
 If you or someone you know is seeking help in Canada, 
 reaching out to the Problem Gambling Helpline is a good 
 first step.
+
+
+Problem Decomposition
+
+OBJECTS
+
+deck
+    number of cards - derrived
+    collection of card[]
+    create deck() 
+    shuffle()
+    deal()
+    numberofcardremaining()
+
+hand
+    number of cards - derrived
+    position x, position y 
+    collection of cards[]
+    evaluatehand_blackjack()
+    displaycards()
+    setposition()
+    muckcards()
+
+card
+    value
+    suit
+    frontimage
+    backimage
+    facing
+    flip() - toggle the facing value (boolean)
+    returnvalue() - returns value of card
+    returnsuit() - returns the suit of card
+    returnfacing() - returns the image URI based 
+        on the current facing
+
+gametable
+    pot
+    cleartable()
+    resolvedealerhand()
+    payouts()
+
+players
+    chips
+    hand
+    name
+    gameoptions...\\\
+
+
+GAME LOGIC
+
+    when to reshuffle (50% or less of deck left)
+
+    when evaluating a hand an ace is 1 or 11 and face cards are 10
+
+    deal cards - first card to dealer face down, remaining cards face up
+
+    options
+        hit - deals a new card to that hand, face up
+        stay - hand is frozen (put value on screen?)
+        bet - add to the amount bet (minimum bet?)
+        bust? - what happens when a player busts 
+        dealer action - after hands evaluated dealer plays, 
+            dealer goes until score is 16+ or they bust.
+        
+
+
+
+

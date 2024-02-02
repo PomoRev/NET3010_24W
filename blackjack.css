@@ -26,32 +26,30 @@ header {
 
 }
 
-#table {
+#gametable {
 
     margin: 10px auto;
-    border: 6px brown solid;
-    border-radius: 25px;
+    width: 80%;
+    height: 80vh;
 
-    height: 500px;
-    background-image: url(./images/vecteezy_green-casino-poker-table-texture-game-background_24232274.jpg);
-
-}
-
-#table :nth-child(1) {
-
-    width: 60%;
-    position: relative;
-    right: -318px;
-    bottom: -116px;
+    background-image: url(./images/styledtabletop.png);
+    background-size: contain;
+    background-repeat: no-repeat;
 
 }
 
 .card {
 
-    width: 100px;
+    width: 20px;
     position: absolute;
 
-    left: 71px;
-    top: 100px;
+    left: 471px;
+    top: 150px;
+
+}
+
+.card img {
+
+    width: 60px;
 
 }
