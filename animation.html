@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Prof. Frank Emanuel">
+    <meta name="email" content="emanuef@algonquincollege.com">
+    <meta name="date" content="2024-02-05">
+    <title>animate this...</title>
+    <style>
+
+        body {
+            background-color: blueviolet;
+        }
+
+        .animatorbox {
+
+            border: 3px solid black;
+            background-color: blue;
+
+            position: fixed;
+            right:0;
+            bottom:-200px;
+
+
+            /* makes an instant popup */
+
+            animation: popup 0s ease;
+            animation-fill-mode: forwards;
+            animation-delay: 1s;
+
+        }
+
+        .animatorbox:hover {
+
+            animation: popup 0s ease infinite;
+            animation-fill-mode: backwards;
+        
+        }
+
+        @keyframes popup {
+
+            from {
+                translate: 0;
+            }
+            
+            to {
+
+                translate: 0 -200px;
+            }
+            
+        }
+
+        img {
+
+            width: 200px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <header>animate this...</header>
+    <div class="animatorbox">
+        <a href=""><img src="./small_frank.jpg" alt="Frank"></a>
+    </div>
+</body>
+</html>
