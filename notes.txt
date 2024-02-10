@@ -45,10 +45,10 @@ Problem Decomposition
 
 OBJECTS
 
-deck
+deck 
     number of cards - derrived
     collection of card[]
-    create deck() 
+    create deck() constructor
     shuffle()
     deal()
     numberofcardremaining()
@@ -62,7 +62,7 @@ hand
     setposition()
     muckcards()
 
-card
+card (complete!)
     value
     suit
     frontimage

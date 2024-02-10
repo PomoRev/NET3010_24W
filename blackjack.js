@@ -11,6 +11,21 @@ const CARDBACK = "cardback.png";
 
 function Card( cardSuit, cardValue ) {
 
+   /*   This constructor expects a suit value from 0-4 and a value from 1-13, if a 0 is given 
+        for the suit then the value is not important as the card will be a joker.
+        Cards are meant to be created in a Deck object.   
+        Data:   the card suit, the card value, if it is faceup (default is false), the 
+                filename of the card back image, and the filename of the image for the front 
+                of the card.
+        Methods (interface):
+            returnFacing()  - returns true if the card is face up, otherwise returns false.
+            flip()          - reverses the facing of the card.
+            returnValue()   - returns the numeric value of the card.
+            returnSuit()    - returns the numeric value for the card's suit.
+            returnValueText()   - returns the text for the card's value if it is an ace or face card.
+            returnSuitText()    - returns the text for the suit of the card.
+    */ 
+
     this.suit = cardSuit;
     this.value = cardValue;
     this.faceup = false;
@@ -62,7 +77,13 @@ function Deck( numberDecks, numberJokers ){
         }
     }
 
+    for ( i = 0; i < numberJokers; i++ ){
+        this.deck.push( new Card (JOKER, JOKER) );
+    }
+
 }
+
+// member functions
 
 Card.prototype.returnFacing = function () {
     return (this.faceup) ? this.frontimage : this.backimage;
@@ -72,6 +93,45 @@ Card.prototype.flip = function () {
 }
 Card.prototype.returnValue = function () { return this.value; }
 Card.prototype.returnSuit = function () { return this.suit; }
+Card.prototype.returnValueText = function () { 
+    let valueToReturn = "none";
+    if (this.value == JOKER) {
+        valueToReturn = "joker";
+    } else {
+        switch (this.value) {
+            case ACE:   valueToReturn = "ace";
+                break;
+            case JACK:  valueToReturn = "jack";
+                break;
+            case QUEEN: valueToReturn = "queen";
+                break;
+            case KING:  valueToReturn = "king";
+                break;    
+            default:    valueToReturn = this.value;
+                break;
+        }
+    }
+    return valueToReturn;
+}
+Card.prototype.returnSuitText = function () {
+    let valueToReturn = "joker";
+    switch (this.suit) {
+        case HEARTS: valueToReturn = "hearts";
+            break;
+        case SPADES: valueToReturn = "spades";
+            break;                
+        case DIAMONDS: valueToReturn = "diamonds";
+            break;                
+        case CLUBS: valueToReturn = "clubs";
+            break;  
+    }
+    return valueToReturn;
+}
 
 Deck.prototype.dealCard = function () { return this.deck.pop(); }
+Deck.prototype.numberOfCardsRemaining = function () { return this.deck.length; }
+Deck.prototype.shuffle = function () {
 
+    // build an algorithm
+
+}
