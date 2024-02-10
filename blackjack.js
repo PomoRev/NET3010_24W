@@ -48,7 +48,7 @@ function Card( cardSuit, cardValue ) {
 
 function Deck( numberDecks, numberJokers ){
 
-    const deck = [];
+    this.deck = [];
 
     for ( i = 0; i < numberDecks; i++){
 
@@ -56,7 +56,7 @@ function Deck( numberDecks, numberJokers ){
 
             for ( iValue = 1; iValue <= KING; iValue++ ){
 
-                deck.push( new Card(iSuit, iValue));
+                this.deck.push( new Card(iSuit, iValue));
 
             }
         }
