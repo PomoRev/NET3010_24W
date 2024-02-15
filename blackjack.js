@@ -63,6 +63,21 @@ function Card( cardSuit, cardValue ) {
 
 function Deck( numberDecks, numberJokers ){
 
+    /*  This constructor expects a number of 52 card decks to include in the deck as well as a
+        variable number of jokers to add to the deck.   
+        Data:   the main data is an array containing all of the cards of a deck. Because the use
+                of a deck is destructive, we will also store the number of decks and the number of 
+                jokers in case we need to refresh the deck.
+        Methods (interface):
+            dealCard()  - pops the last card off of the array of cards.
+            numberOfCardsRemaining()  - returns the number of cards left in the deck.
+            shuffle()   - randomizes the deck array using a Fisher-Yates algorithm.
+            muckDeck()  - removes any remaining cards in the deck to prepare for full shuffle.
+    */ 
+
+    this.numberOfDecks = numberDecks;
+    this.numberOfJokers = numberJokers;
+
     this.deck = [];
 
     for ( i = 0; i < numberDecks; i++){
@@ -81,6 +96,26 @@ function Deck( numberDecks, numberJokers ){
         this.deck.push( new Card (JOKER, JOKER) );
     }
 
+}
+
+function Hand( positionX, positionY ){
+
+    /*  This constructor creates an array for holding cards as well as functions to allow the game
+        to work. The constructor expects an X and Y offset for display purposes, this is where the 
+        first card will be displayed.   
+        Data:   The main data is an array of cards. The hand will contain an x and y offset for 
+                positioning the hand on the screen. 
+        Methods (interface):
+            setPosition( positionX, positionY )  - allows us to modify the hand position on the display
+            numberOfCardsRemaining()  - returns the number of cards left in the hand.
+            displayHand()   - randomizes the deck array using a Fisher-Yates algorithm.
+            evaluateHand()  - returns the value of the hand using Black Jack Rules.
+            muckCard()      - discards a card from the hand.
+    */    
+   
+        this.xOffset = positionX;
+        this.yOffset = positionY;
+        this.cards = [];
 }
 
 // member functions
@@ -132,6 +167,35 @@ Deck.prototype.dealCard = function () { return this.deck.pop(); }
 Deck.prototype.numberOfCardsRemaining = function () { return this.deck.length; }
 Deck.prototype.shuffle = function () {
 
+    // build an algorithm 
+
+}
+Deck.muckDeck = function () {
+
     // build an algorithm
 
+}
+
+Hand.prototype.setPosition( positionX, positionY ) = function () {
+    this.xOffset = positionX;
+    this.yOffset = positionY;
+}
+Hand.prototype.numberOfCardsRemaining = function () { return this.cards.length; }
+Hand.prototype.displayHand = function () {
+    
+    // build an algorithm
+
+}
+Hand.prototype.evaluateHand = function () {
+
+    let handValue = 0;
+
+    // build an algorithm
+
+    return handValue;
+}
+Hand.prototype.muckCard = function ( cardOffset ) {
+
+    // build an algorithm
+    
 }
