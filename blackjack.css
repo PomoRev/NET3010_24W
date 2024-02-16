@@ -45,13 +45,13 @@ header {
 
 .dealerhand {
 
-    grid-area: 3 / 4 / 4 / 6;
+    grid-area: 2 / 4 / 3 / 6;
 
 }
 
 .playerhand {
 
-    grid-area: 6 / 3 / 7 / 5;
+    grid-area: 4 / 3 / 5 / 5;
 
 }
 
@@ -79,7 +79,7 @@ header {
 
 .pot {
 
-    grid-area: 6 / 4 / 8 / 5;
+    grid-area: 3 / 5 / 5 / 6;
 
     z-index: 1;
 
@@ -92,9 +92,9 @@ header {
 
 }
 
-.amount {
+.potamount, .bid {
 
-    grid-area: 7 / 4 / 8 / 5;
+    grid-area: 4 / 5 / 5 / 6;
 
     font-size: 24pt;
     font-weight: bolder;
@@ -110,4 +110,47 @@ header {
     opacity: 0.8;
     margin-top: 20px;
 
+}
+
+.bid {
+    grid-area: 5 / 3 / 6 / 4;
+}
+
+#gametable button { 
+
+    display: block;
+    border: solid #060806 3px;
+    border-radius: 15px;
+    padding: 5px;
+    background-color: chartreuse;
+
+    font-size: 24pt;
+    font-weight: bold;
+    color: #060806;
+    justify-content: right;
+    text-align: center;
+    z-index: 1;
+
+    margin-left: 10px;
+
+}
+
+#gametable button:hover {
+    background-color: antiquewhite;
+}
+
+#bid {
+    grid-area: 2 / 7 / 3 / 8;
+}
+
+#hold {
+    grid-area: 3 / 7 / 4 / 8;
+}
+
+#hit {
+    grid-area: 4 / 7 / 5 / 8;
+}
+
+#split {
+    grid-area: 5 / 7 / 6 / 8;
 }
