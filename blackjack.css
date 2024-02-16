@@ -8,7 +8,7 @@ body {
     font-size: 14pt;
 
     background-color: #060806;
-    color: rgb(190, 184, 184);
+    color: #beb8b8;
 
     padding: 0px 40px;
 
@@ -29,27 +29,85 @@ header {
 #gametable {
 
     margin: 10px auto;
-    width: 80%;
-    height: 80vh;
+    width: 90%;
+    height:2000px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 5% repeat(10, 90px);
+    align-items: center;
 
     background-image: url(./images/styledtabletop.png);
     background-size: contain;
+    background-clip: border-box;
     background-repeat: no-repeat;
 
 }
 
-.card {
+.dealerhand {
 
-    width: 20px;
-    position: absolute;
-
-    left: 471px;
-    top: 150px;
+    grid-area: 3 / 4 / 4 / 6;
 
 }
 
-.card img {
+.playerhand {
+
+    grid-area: 6 / 3 / 7 / 5;
+
+}
+
+.dealerhand img, .playerhand img {
 
     width: 60px;
+    position: relative;
+    z-index: 1;
+
+}
+
+.dealerhand :nth-child(2){
+
+    right: 30px;
+    z-index: 2;
+
+}
+
+.dealerhand :nth-child(3){
+
+    right: 60px;
+    z-index: 3;
+
+}
+
+.pot {
+
+    grid-area: 6 / 4 / 8 / 5;
+
+    z-index: 1;
+
+}
+
+.pot img {
+
+    position: absolute;
+    height: 180px;
+
+}
+
+.amount {
+
+    grid-area: 7 / 4 / 8 / 5;
+
+    font-size: 24pt;
+    font-weight: bolder;
+    color: #060806;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    z-index: 2;
+
+    border: solid #060806 3px;
+    background-color: #beb8b8;
+    padding: auto 2px;
+    opacity: 0.8;
+    margin-top: 20px;
 
 }
