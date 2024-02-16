@@ -167,8 +167,20 @@ Deck.prototype.dealCard = function () { return this.deck.pop(); }
 Deck.prototype.numberOfCardsRemaining = function () { return this.deck.length; }
 Deck.prototype.shuffle = function () {
 
-    // build an algorithm 
+    /*  Fisher Yates Array Shuffle Algorithm (modified)
 
+        1.  Write down the numbers from 1 through number of elements
+            in the array.
+        2.  Pick a random number between 1 and the 
+            number of unstruck numbers remaining inclusive of the
+            number of the current element itself.
+        3.  Swap the current element with the random element.
+        4.  Freeze the current element
+        5.  Continue with the next element in the array until all
+            elements have been visited once.
+    
+        The array should be sufficiently randomized. 
+    */
 }
 Deck.muckDeck = function () {
 
