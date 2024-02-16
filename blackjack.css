@@ -153,4 +153,5 @@ header {
 
 #split {
     grid-area: 5 / 7 / 6 / 8;
+    visibility: hidden;
 }
