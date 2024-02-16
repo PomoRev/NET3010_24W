@@ -131,8 +131,6 @@ header {
     text-align: center;
     z-index: 1;
 
-    margin-left: 10px;
-
 }
 
 #gametable button:hover {
@@ -141,14 +139,17 @@ header {
 
 #bid {
     grid-area: 2 / 7 / 3 / 8;
+    visibility: hidden;
 }
 
 #hold {
     grid-area: 3 / 7 / 4 / 8;
+    visibility: hidden;
 }
 
 #hit {
     grid-area: 4 / 7 / 5 / 8;
+    visibility: hidden;
 }
 
 #split {
