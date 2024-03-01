@@ -64,18 +64,10 @@ header {
 }
 
 .dealerhand :nth-child(2){
-
     right: 30px;
     z-index: 2;
-
 }
 
-.dealerhand :nth-child(3){
-
-    right: 60px;
-    z-index: 3;
-
-}
 
 .pot {
 

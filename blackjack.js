@@ -101,23 +101,23 @@ function Deck( numberDecks, numberJokers ){
 
 }
 
-function Hand( positionX, positionY ){
+function Hand( holder ){
 
     /*  This constructor creates an array for holding cards as well as functions 
-        to allow the game to work. The constructor expects an X and Y offset for 
+        to allow the game to work. The constructor expects an class name for 
         display purposes, this is where the first card will be displayed.   
         Data:   The main data is an array of cards. The hand will contain an x 
                 and y offset for positioning the hand on the screen. 
         Methods (interface):
-            setPosition( positionX, positionY )  - allows us to modify the hand position on the display
+            addCard()       - append a card to the hand's card array.
+            setPosition( holder )  - allows us to modify the hand position on the display
             numberOfCardsRemaining()  - returns the number of cards left in the hand.
             displayHand()   - randomizes the deck array using a Fisher-Yates algorithm.
             evaluateHand()  - returns the value of the hand using Black Jack Rules.
             muckCard()      - discards a card from the hand.
     */    
    
-        this.xOffset = positionX;
-        this.yOffset = positionY;
+        this.LocationDiv = holder;
         this.cards = [];
 }
 
@@ -225,16 +225,34 @@ Deck.prototype.muckDeck = function () {
     }
 }
 
-Hand.prototype.setPosition( positionX, positionY ) = function () {
-    this.xOffset = positionX;
-    this.yOffset = positionY;
+Hand.prototype.setPosition = function (holder) {
+    this.LocationDiv = holder;
 }
+Hand.prototype.addCard = function ( card ) { this.cards.push(card);}
 Hand.prototype.numberOfCardsRemaining = function () { return this.cards.length; }
 Hand.prototype.displayHand = function () {
     
-    // build an algorithm
+    // start at rigth 30 for each card and z-index starts a 1
 
+    // for each card in hand 
+    //     set right style property to 30 * card number (start at 1)
+    //     set the z index incrementing from 1
+    //     display the card on the screen
+
+    let firstPosition = 30;
+    let zValue = 1;
+    divholder = document.getElementsByClassName(this.LocationDiv)[0];
+    divholder.innerHTML = "";  // clear out old cards
+
+    for (const currentCard of this.cards) {
+        imageToDisplay = (currentCard.faceup) ? currentCard.frontimage : currentCard.backimage;
+        divholder.innerHTML += "<IMG src='images/" + imageToDisplay + "' style='right:" 
+            + firstPosition + "px; z-index: " + zValue + "'>";
+        zValue += 1;
+        firstPosition += 30;   
+    }
 }
+
 Hand.prototype.evaluateHand = function () {
 
     let handValue = 0;
@@ -243,6 +261,7 @@ Hand.prototype.evaluateHand = function () {
 
     return handValue;
 }
+
 Hand.prototype.muckCard = function ( cardOffset ) {
 
     // build an algorithm
