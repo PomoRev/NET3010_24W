@@ -17,7 +17,7 @@
         <input type="text" name="frankthename" id="franktheid">
         <button type="submit">Form 1</button>
     </form>
-    <form action="" method="get">
+    <form action="" onsubmit="return testing();" method="get">
         <label for="mycolour">choose a color:</label> 
         <input type="color" name="mycolour" id="mycolour">
         <label for="pword">give me your password:</label>
@@ -26,3 +26,19 @@
     </form>
 </body>
 </html>
+
+<script>
+
+    function foo() {
+        console.log("foo'd the bed");
+        setTimeout ("foo();" , 3000);
+    }
+
+    function testing() {
+        return false;
+    }
+
+    // setTimeout(() => { foo(); }, 3000 );
+
+
+</script>
