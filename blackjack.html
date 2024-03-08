@@ -8,7 +8,7 @@
     <meta name="date" content="2024-01-19">
     <link rel="stylesheet" href="./blackjack.css">
     <title>Space Academy BlackJack</title>
-    <script src="./blackjack.js" defer></script>
+    
 </head>
 <body>
     <header><h1>Space Academy BlackJack</h1></header>
@@ -33,27 +33,20 @@
     </div>
     <div id="gametable">
         <!-- <img src="./astronaut-2025894_1280.png" alt="astronaut embellishment"> -->
-        <div class="dealerhand">
-            <img src="images/cardback.png" alt="cardback">
-            <img src="./images/clubs_6.svg" alt="card">
-            <img src="images/clubs_king.svg" alt="card">
-            <img src="images/hearts_8.svg" alt="card">
-        </div>
+        <div class="dealerhand"></div>
         <div class="pot">
             <img src="images/icons8-poker-chips-64.png" alt="chip stack">
         </div>
         <div class="potamount">
             100
         </div>
-        <div class="playerhand">
-            <img src="./images/clubs_6.svg" alt="card">
-        </div>
+        <div class="playerhand"></div>
         <div class="bid">
             10
         </div>
         <button id="bid">BID 10</button>
         <button id="hit">HIT ME</button>
-        <button id="hold">HOLD</button>
+        <button id="hold" onclick="revealHands();">HOLD</button>
         <button id="split">SPLIT</button>
     </div>
     <div id="warning">
@@ -79,7 +72,10 @@
         </p>
     </div>
 </body>
+<script src="./blackjack.js" defer></script>
+<!-- <script src="rungame.js"></script> -->
 </html>
+
 
 <!-- 
     Background for table: Casino Vectors by Vecteezy

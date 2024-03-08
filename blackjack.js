@@ -115,6 +115,7 @@ function Hand( holder ){
             displayHand()   - randomizes the deck array using a Fisher-Yates algorithm.
             evaluateHand()  - returns the value of the hand using Black Jack Rules.
             muckCard()      - discards a card from the hand.
+            revealHand()    - turns all the cards in the hand face up.
     */    
    
         this.LocationDiv = holder;
@@ -230,7 +231,7 @@ Hand.prototype.setPosition = function (holder) {
 }
 Hand.prototype.addCard = function ( card ) { this.cards.push(card);}
 Hand.prototype.numberOfCardsRemaining = function () { return this.cards.length; }
-Hand.prototype.displayHand = function () {
+Hand.prototype.displayHand = function() {
     
     // start at rigth 30 for each card and z-index starts a 1
 
@@ -267,3 +268,53 @@ Hand.prototype.muckCard = function ( cardOffset ) {
     // build an algorithm
     
 }
+
+Hand.prototype.revealHand = function () {
+
+    for (const card of this.cards) {
+        card.faceup = true;
+    }
+
+}
+
+
+theDeck = new Deck ( 1, 0 );
+
+theDeck.shuffle();
+
+console.log( " created a deck and shuffled it " );
+
+// deal a card to eachplayer then the dealer until two cards 
+// each and flip one dealer card and both player cards
+
+dealerHand = new Hand("dealerhand");
+playerHand = new Hand("playerhand");
+
+console.log( "length of deck before deal = " + theDeck.numberOfCardsRemaining() );
+
+playerHand.addCard( theDeck.dealCard() );
+dealerHand.addCard( theDeck.dealCard() );
+playerHand.addCard( theDeck.dealCard() );
+dealerHand.addCard( theDeck.dealCard() );
+playerHand.addCard( theDeck.dealCard() );
+
+console.log( "length of deck after deal = " + theDeck.numberOfCardsRemaining() );
+
+playerHand.cards[0].flip();
+playerHand.cards[1].flip();
+playerHand.cards[2].flip();
+dealerHand.cards[1].flip();
+
+playerHand.displayHand();
+dealerHand.displayHand();
+
+document.getElementById("hold").style.visibility = "visible";
+
+function revealHands() {
+
+    dealerHand.revealHand();
+    dealerHand.displayHand();
+
+}
+
+
