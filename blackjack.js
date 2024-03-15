@@ -122,6 +122,28 @@ function Hand( holder ){
         this.cards = [];
 }
 
+function Player ( wager, holder ){
+
+    /*  This constructor creates a player who has a hand and an amount of 
+        money with which to place wagers. There is a special player called 
+        the dealer who has no limits to the amount of money available and 
+        also has special rules for playing the game. 
+        Data: hand of cards, amount of money available, are they a dealer.
+        Methods (interface):
+            addMoney()      - increase the amount you have available to bet
+            betMoney()      - remove money for a bet
+            chipsLeft()     - returns the number of chips left in player's stack
+            displayMoney()  - update the number of chips available
+            toggleDealer()  - inverts the dealer flag
+            showPlayerType()- shows if they are a dealer or not
+            showLocation()  - returns the ID for the div of chip pile
+    */
+
+    this.chipStack = wager;
+    this.LocationDiv = holder;
+    this.dealer = false;
+}
+
 // member functions
 
 Card.prototype.returnFacing = function () {
@@ -277,6 +299,20 @@ Hand.prototype.revealHand = function () {
 
 }
 
+Player.prototype.addMoney( amount ) {
+    this.chipStack += amount;
+}
+
+Player.prototype.betMoney( amount ) {
+    this.chipStack -= amount;
+}
+
+Player.prototype.chipsLeft () {
+    return this.chipStack;
+}
+
+
+// Run Game
 
 theDeck = new Deck ( 1, 0 );
 
