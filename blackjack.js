@@ -122,7 +122,7 @@ function Hand( holder ){
         this.cards = [];
 }
 
-function Player ( wager, holder ){
+function Player ( wager, chips, holder ){
 
     /*  This constructor creates a player who has a hand and an amount of 
         money with which to place wagers. There is a special player called 
@@ -140,8 +140,9 @@ function Player ( wager, holder ){
     */
 
     this.chipStack = wager;
-    this.LocationDiv = holder;
+    this.LocationDiv = chips;
     this.dealer = false;
+    this.hand = new Hand( holder );
 }
 
 // member functions
@@ -299,18 +300,36 @@ Hand.prototype.revealHand = function () {
 
 }
 
-Player.prototype.addMoney( amount ) {
+Player.prototype.addMoney = function ( amount ) {
     this.chipStack += amount;
 }
 
-Player.prototype.betMoney( amount ) {
+Player.prototype.betMoney = function ( amount ) {
     this.chipStack -= amount;
 }
 
-Player.prototype.chipsLeft () {
+Player.prototype.chipsLeft = function () {
     return this.chipStack;
 }
 
+Player.prototype.toggleDealer = function () {
+    this.dealer = !this.dealer;
+}
+
+Player.prototype.showPlayerType = function () {
+    return this.dealer;
+}
+
+Player.prototype.showLocation = function () {
+    return this.LocationDiv;
+}
+
+Player.prototype.displayMoney = function () {
+    
+    document.getElementsByClassName(this.LocationDiv)[0].innerText =
+    this.chipsLeft();
+
+}
 
 // Run Game
 
@@ -323,7 +342,17 @@ console.log( " created a deck and shuffled it " );
 // deal a card to eachplayer then the dealer until two cards 
 // each and flip one dealer card and both player cards
 
-dealerHand = new Hand("dealerhand");
+dealer = new Player ( 0, "none", "dealerhand");
+
+playerOne = new Player ( 1500, "playerchips", "playerhand");
+
+playerOne.hand.addCard( theDeck.dealCard() );
+playerOne.hand.addCard( theDeck.dealCard() );
+playerOne.hand.addCard( theDeck.dealCard() );
+
+playerOne.hand.displayHand();
+
+/* dealerHand = new Hand("dealerhand");
 playerHand = new Hand("playerhand");
 
 console.log( "length of deck before deal = " + theDeck.numberOfCardsRemaining() );
@@ -354,3 +383,4 @@ function revealHands() {
 }
 
 
+ */
