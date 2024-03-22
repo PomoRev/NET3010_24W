@@ -3,6 +3,7 @@
 theDeck = new Deck ( 1, 0 );
 
 /* steps for playing the game:
+    0) disable play again button
     1) check to see if the deck has less than 50% of cards 
         1a) if so shuffle
     2) take an ante of 10 chips from each player add to pot
@@ -20,14 +21,29 @@ theDeck = new Deck ( 1, 0 );
         11a) deal faceup card to player
         11b) evaluate player hand, if 21 disable hit button
     12) if hold button pressed
-        12a) disable buttons
-        12b) reveal dealer card
-        12c) while dealer hand evaluates less than 17
-            12ca) deal one card face up to dealer
-        12d) evaluate dealer hand
-        12e) evaluate player hand
-        12f) if dealer hand > 21 (bust)  then award bet * 2 to player 
-        12g) 
+        12a) disable all game buttons
+        12b) set win condition to LOSE
+        12c) reveal dealer card
+        12d) evaluate both hands
+        12e) if player is natural 21 and dealer is not
+            12ea) award bet * 2.5 to player
+            12eb) set win condition to BONUS
+        12f) else while dealer hand less than 17 and dealer hand less than player hand
+            12fa) deal one card face up to dealer
+            12fb) evaluate dealer hand
+        12g) if dealer hand > 21 (bust)   (these need to short circuit)
+            12g1) award bet * 2 to player
+            12g2) set win condition to WIN
+        12h) else if dealer hand equal to player hand
+            12ha) return bet to player
+            12hb) set win condition to TIE
+        12i) else if dealer hand < player hand
+            12ia) award bet * 2 to player
+            12ib) set win condition to WIN
+    13) display response based on win condition
+    14) activate a play again button
+        
+
 
  */
 
