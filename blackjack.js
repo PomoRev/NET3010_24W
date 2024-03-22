@@ -280,8 +280,42 @@ Hand.prototype.displayHand = function() {
 Hand.prototype.evaluateHand = function () {
 
     let handValue = 0;
+    let aces = 0;
 
-    // build an algorithm
+    /* 
+        cycle through the cards adding each value
+        if value is > 21 and there is an ace
+        for each ace 
+            change value of that ace from 11 to 1
+            re-valuate hand until either it is less than
+            or equal to 21 or there are no more aces.
+        return the final value.
+    */
+
+    for ( aCard of this.cards ){
+
+        console.log( "next card " + aCard.returnValue() + "and " + handValue )
+
+        if ( aCard.returnValue() == ACE ) {
+            
+            aces += 1;
+            handValue += 11;
+
+        } else if (aCard.returnValue() > 9 ) {
+            
+                handValue += 10;
+
+            } else handValue += aCard.returnValue();
+    }
+
+    while ( (handValue > 21) && (aces > 0) ){
+        
+        console.log( "aces removal machine " + handValue );
+
+        handValue -= 10;
+        aces -= 1;
+
+    }
 
     return handValue;
 }

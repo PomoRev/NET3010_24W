@@ -55,6 +55,8 @@ header {
 
 }
 
+
+
 .dealerhand img, .playerhand img {
 
     width: 60px;
@@ -84,7 +86,7 @@ header {
 
 }
 
-.potamount, .bid {
+.potamount, .bid, .playerchips {
 
     grid-area: 4 / 5 / 5 / 6;
 
@@ -102,6 +104,11 @@ header {
     opacity: 0.8;
     margin-top: 20px;
 
+}
+
+.playerchips {
+
+    grid-area: 5 / 3 / 6 / 4;
 }
 
 .bid {

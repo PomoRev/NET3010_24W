@@ -17,7 +17,7 @@ theDeck = new Deck ( 1, 0 );
     9) deal one card, face up to the dealer 
     10) evaluate player hand, if 21
         10a) disable hit button 
-    11) if hit button pressed
+    11) else if hit button pressed
         11a) deal faceup card to player
         11b) evaluate player hand, if 21 disable hit button
     12) if hold button pressed
@@ -25,7 +25,7 @@ theDeck = new Deck ( 1, 0 );
         12b) set win condition to LOSE
         12c) reveal dealer card
         12d) evaluate both hands
-        12e) if player is natural 21 and dealer is not
+        12e) if player is natural 21 and dealer does not
             12ea) award bet * 2.5 to player
             12eb) set win condition to BONUS
         12f) else while dealer hand less than 17 and dealer hand less than player hand
@@ -61,9 +61,14 @@ playerOne = new Player ( 1500, "playerchips", "playerhand");
 
 playerOne.hand.addCard( theDeck.dealCard() );
 playerOne.hand.addCard( theDeck.dealCard() );
-playerOne.hand.addCard( theDeck.dealCard() );
+// playerOne.hand.addCard( theDeck.dealCard() );
 
+playerOne.hand.revealHand();
 playerOne.hand.displayHand();
+
+console.log( "player has " + playerOne.hand.evaluateHand() );
+
+playerOne.displayMoney();
 
 /* dealerHand = new Hand("dealerhand");
 playerHand = new Hand("playerhand");
