@@ -18,7 +18,7 @@ higher. If the dealer busts (exceeds 21), players win.
 
 Winning occurs if a player's hand is closer to 21 than the 
 dealer's. A "blackjack," an Ace and a 10-value card, usually 
-pays 3:2. Ties result in a push. Players can split identical 
+pays out 1.5 X bet. Ties result in a push. Players can split identical 
 cards into two hands and double their original bet after the 
 first two cards, hitting only once more.
 
