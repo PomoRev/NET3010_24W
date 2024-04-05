@@ -8,6 +8,8 @@ const ACE = 1, JACK = 11, QUEEN = 12, KING = 13;
 const DECKSIZE = 52;
 const CARDBACK = "cardback.png";
 
+let handRunning = false;
+
 // object definitions 
 
 function Card( cardSuit, cardValue ) {
@@ -122,25 +124,28 @@ function Hand( holder ){
         this.cards = [];
 }
 
-function Player ( wager, chips, holder ){
+function Player ( buyin, chips, holder ){
 
     /*  This constructor creates a player who has a hand and an amount of 
         money with which to place wagers. There is a special player called 
         the dealer who has no limits to the amount of money available and 
         also has special rules for playing the game. 
-        Data: hand of cards, amount of money available, are they a dealer.
+        Data: hand of cards, amount of money available, amount of money
+              currently bet, and are they a dealer.
         Methods (interface):
             addMoney()      - increase the amount you have available to bet
-            betMoney()      - remove money for a bet
+            betMoney()      - remove money for a bet (adds to wager)
             chipsLeft()     - returns the number of chips left in player's stack
             displayMoney()  - update the number of chips available
+            displayWager()  - updates the chips in the bet (box) for that player
             toggleDealer()  - inverts the dealer flag
             showPlayerType()- shows if they are a dealer or not
             showLocation()  - returns the ID for the div of chip pile
     */
 
-    this.chipStack = wager;
+    this.chipStack = buyin;
     this.LocationDiv = chips;
+    this.wager = 0;
     this.dealer = false;
     this.hand = new Hand( holder );
 }
@@ -340,6 +345,7 @@ Player.prototype.addMoney = function ( amount ) {
 
 Player.prototype.betMoney = function ( amount ) {
     this.chipStack -= amount;
+    this.wager += amount;
 }
 
 Player.prototype.chipsLeft = function () {
@@ -362,6 +368,13 @@ Player.prototype.displayMoney = function () {
     
     document.getElementsByClassName(this.LocationDiv)[0].innerText =
     this.chipsLeft();
+
+}
+
+Player.prototype.displayWager = function () {
+
+    document.getElementsByClassName("potamount")[0].innerText =
+    this.wager;
 
 }
 

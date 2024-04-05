@@ -38,14 +38,14 @@
             <img src="images/icons8-poker-chips-64.png" alt="chip stack">
         </div>
         <div class="potamount">
-            0
+           0
         </div>
         <div class="playerhand"></div>
-        <div class="playerchips"></div>
-        <button id="bid">BID 10</button>
+        <div class="playerchips">0</div>
+        <button id="bid" onclick="bid(10);">BID 10</button>
         <button id="hit">HIT ME</button>
-        <button id="hold" onclick="revealHands();">HOLD</button>
-        <button id="split">SPLIT</button>
+        <button id="hold" onclick="runHand();">HOLD</button>
+        <button id="playagain" onclick="startGame();">PLAY</button>
     </div>
     <div id="warning">
         <div class="cardheading">Gambling Addiction Hotline</div>

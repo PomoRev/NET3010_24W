@@ -1,6 +1,62 @@
 // Run Game - testing script
 
 theDeck = new Deck ( 1, 0 );
+theDeck.shuffle();
+
+
+console.log( " created a deck and shuffled it " );
+
+// deal a card to eachplayer then the dealer until two cards 
+// each and flip one dealer card and both player cards
+
+dealer = new Player ( 0, "none", "dealerhand");
+
+playerOne = new Player ( 70, "playerchips", "playerhand");
+
+// playerOne.hand.addCard( theDeck.dealCard() );
+// playerOne.hand.addCard( theDeck.dealCard() );
+// // playerOne.hand.addCard( theDeck.dealCard() );
+
+// playerOne.hand.revealHand();
+// playerOne.hand.displayHand();
+
+// console.log( "player has " + playerOne.hand.evaluateHand() );
+
+playerOne.displayMoney();
+playerOne.displayWager();
+
+/* dealerHand = new Hand("dealerhand");
+playerHand = new Hand("playerhand");
+
+console.log( "length of deck before deal = " + theDeck.numberOfCardsRemaining() );
+
+playerHand.addCard( theDeck.dealCard() );
+dealerHand.addCard( theDeck.dealCard() );
+playerHand.addCard( theDeck.dealCard() );
+dealerHand.addCard( theDeck.dealCard() );
+playerHand.addCard( theDeck.dealCard() );
+
+console.log( "length of deck after deal = " + theDeck.numberOfCardsRemaining() );
+
+playerHand.cards[0].flip();
+playerHand.cards[1].flip();
+playerHand.cards[2].flip();
+dealerHand.cards[1].flip();
+
+playerHand.displayHand();
+dealerHand.displayHand();
+
+document.getElementById("hold").style.visibility = "visible";
+
+function revealHands() {
+
+    dealerHand.revealHand();
+    dealerHand.displayHand();
+
+}
+
+
+ */
 
 /* steps for playing the game:
     0) disable play again button
@@ -47,61 +103,76 @@ theDeck = new Deck ( 1, 0 );
 
  */
 
-theDeck.shuffle();
+function bid( amount ) {
 
+    playerOne.betMoney( 10 );
+    playerOne.displayMoney();
+    playerOne.displayWager();
+    if ( playerOne.chipsLeft() < 10 )  
+    document.getElementById('bid').style.visibility = 'hidden';
+} 
 
-console.log( " created a deck and shuffled it " );
+function startGame() {
 
-// deal a card to eachplayer then the dealer until two cards 
-// each and flip one dealer card and both player cards
+    // disable the play again button
 
-dealer = new Player ( 0, "none", "dealerhand");
+    document.getElementById('playagain').style.visibility = 'hidden';
+    
+    // check to see if the deck has less than 50% of cards 
 
-playerOne = new Player ( 1500, "playerchips", "playerhand");
+    if ( theDeck.numberOfCardsRemaining() < (DECKSIZE / 2) )
+        theDeck.shuffle();
 
-playerOne.hand.addCard( theDeck.dealCard() );
-playerOne.hand.addCard( theDeck.dealCard() );
-// playerOne.hand.addCard( theDeck.dealCard() );
+    // ante 10 chips 
 
-playerOne.hand.revealHand();
-playerOne.hand.displayHand();
+    playerOne.betMoney( 10 );
+    playerOne.displayMoney();
+    playerOne.displayWager();    
 
-console.log( "player has " + playerOne.hand.evaluateHand() );
+    // enable bid and hold 
 
-playerOne.displayMoney();
-
-/* dealerHand = new Hand("dealerhand");
-playerHand = new Hand("playerhand");
-
-console.log( "length of deck before deal = " + theDeck.numberOfCardsRemaining() );
-
-playerHand.addCard( theDeck.dealCard() );
-dealerHand.addCard( theDeck.dealCard() );
-playerHand.addCard( theDeck.dealCard() );
-dealerHand.addCard( theDeck.dealCard() );
-playerHand.addCard( theDeck.dealCard() );
-
-console.log( "length of deck after deal = " + theDeck.numberOfCardsRemaining() );
-
-playerHand.cards[0].flip();
-playerHand.cards[1].flip();
-playerHand.cards[2].flip();
-dealerHand.cards[1].flip();
-
-playerHand.displayHand();
-dealerHand.displayHand();
-
-document.getElementById("hold").style.visibility = "visible";
-
-function revealHands() {
-
-    dealerHand.revealHand();
-    dealerHand.displayHand();
+    if ( playerOne.chipsLeft() > 0 )
+        document.getElementById('bid').style.visibility = 'visible';
+    document.getElementById('hold').style.visibility = 'visible';
 
 }
 
+function runHand() {
 
- */
+    // Process the user hand creation 
+
+    if (!handRunning) {
+
+        handRunning = true;
+
+        dealerHand = new Hand("dealerhand");
+        playerHand = new Hand("playerhand");
+
+console.log( "length of deck before deal = " + theDeck.numberOfCardsRemaining() );
+
+        playerHand.addCard( theDeck.dealCard() );
+        dealerHand.addCard( theDeck.dealCard() );
+        playerHand.addCard( theDeck.dealCard() );
+        dealerHand.addCard( theDeck.dealCard() );
+
+console.log( "length of deck after deal = " + theDeck.numberOfCardsRemaining() );
+
+        playerHand.cards[0].flip();
+        playerHand.cards[1].flip();
+        dealerHand.cards[1].flip();
+
+        playerHand.displayHand();
+        dealerHand.displayHand();
+
+        document.getElementById('bid').style.visibility = 'hidden';
+        document.getElementById('hold').style.visibility = 'visible';
+        document.getElementById('hit').style.visibility = 'visible';
+
+    } else {
+
+        handRunning = false;
 
 
+    }
+}
 
