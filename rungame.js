@@ -109,6 +109,8 @@ function revealHands() {
 
 function bid( amount ) {
 
+    document.getElementById('endgame').style.display = 'none';
+
     playerOne.betMoney( 10 );
     playerOne.displayMoney();
     playerOne.displayWager();
@@ -119,6 +121,8 @@ function bid( amount ) {
 function startGame() {
 
     // disable the play again button
+
+    document.getElementById('endgame').style.display = 'none';
 
     document.getElementById('playagain').style.visibility = 'hidden';
     gameWon = LOSE;
@@ -220,6 +224,8 @@ console.log( playerHand.evaluateHand() + " current hand value");
                     } else 
                         gameWon = LOSE;
         }
+
+        endGame();
     }
    
 }
@@ -242,8 +248,45 @@ function addCard() {
             document.getElementById('hit').style.visibility = 'hidden';
             document.getElementById('hold').style.visibility = 'hidden';
 
+            endGame();
+
         } 
 }
 
+function endGame() {
+
+    // deal with payouts and messaging 
+
+    switch (gameWon) {
+        case LOSE:
+                document.getElementById('endgame').innerText = "You have lost!";
+            break;
+        case TIE:
+                document.getElementById('endgame').innerText = "No harm, no foul";
+                playerOne.addMoney( playerOne.getWager() );
+            break;
+        case WIN:
+                document.getElementById('endgame').innerText = "Winner, winner!";
+                playerOne.addMoney( playerOne.getWager() * 2 );
+            break;
+        case WIN:
+            document.getElementById('endgame').innerText = "Big winner!!!";
+            playerOne.addMoney( playerOne.getWager() * 2.5 );
+            break;
+    }
+
+    document.getElementById('endgame').style.display = 'block';
+
+    playerOne.resetWager();
+    playerOne.displayMoney();
+    playerOne.displayWager();
+
+    playerHand.
+
+    document.getElementById('playagain').style.visibility = 'visible';
+
+    console.log("button made visible");
+
+}
 
 

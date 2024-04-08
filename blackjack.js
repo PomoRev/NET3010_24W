@@ -141,6 +141,8 @@ function Player ( buyin, chips, holder ){
             toggleDealer()  - inverts the dealer flag
             showPlayerType()- shows if they are a dealer or not
             showLocation()  - returns the ID for the div of chip pile
+            resetWager()    - resets current wager (after loss or payout)
+            getWager()      - returns the current bet amount.
     */
 
     this.chipStack = buyin;
@@ -329,6 +331,7 @@ Hand.prototype.muckCard = function ( cardOffset ) {
 
     // build an algorithm
     
+    
 }
 
 Hand.prototype.revealHand = function () {
@@ -373,8 +376,19 @@ Player.prototype.displayMoney = function () {
 
 Player.prototype.displayWager = function () {
 
-    document.getElementsByClassName("potamount")[0].innerText =
-    this.wager;
+    document.getElementsByClassName("potamount")[0].innerText = this.wager;
+
+}
+
+Player.prototype.resetWager = function () {
+
+    this.wager = 0;
+    
+}
+
+Player.prototype.getWager = function () {
+
+    return this.wager;
 
 }
 

@@ -20,6 +20,21 @@ body {
 
 }
 
+#endgame {
+
+    position:absolute;
+    width:fit-content;
+    padding: 10px;
+    background-color: orange;
+    color: antiquewhite;
+    font-size: 16pt;
+    font-weight: bold;
+    border: black solid 4px;
+    left: 40%;
+    top: 45%;
+
+}
+
 header {
 
     margin-top: 10px;
@@ -45,13 +60,13 @@ header {
 
 .dealerhand {
 
-    grid-area: 2 / 4 / 3 / 6;
+    grid-area: 2 / 4 / 3 / 7;
 
 }
 
 .playerhand {
 
-    grid-area: 4 / 3 / 5 / 5;
+    grid-area: 4 / 3 / 5 / 6;
 
 }
 
