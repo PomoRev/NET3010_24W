@@ -1,5 +1,9 @@
 // Run Game - testing script
 
+const LOSE = 0, BONUS = 2, WIN = 1, TIE = 47;
+
+let gameWon = LOSE;
+
 theDeck = new Deck ( 1, 0 );
 theDeck.shuffle();
 
@@ -117,6 +121,7 @@ function startGame() {
     // disable the play again button
 
     document.getElementById('playagain').style.visibility = 'hidden';
+    gameWon = LOSE;
     
     // check to see if the deck has less than 50% of cards 
 
@@ -165,14 +170,80 @@ console.log( "length of deck after deal = " + theDeck.numberOfCardsRemaining() )
         dealerHand.displayHand();
 
         document.getElementById('bid').style.visibility = 'hidden';
-        document.getElementById('hold').style.visibility = 'visible';
-        document.getElementById('hit').style.visibility = 'visible';
 
+        if (playerHand.evaluateHand() !== 21 ){    
+console.log( playerHand.evaluateHand() + " current hand value");
+            document.getElementById('hit').style.visibility = 'visible';
+            document.getElementById('hold').style.visibility = 'visible';
+        } else {
+            runHand();
+        }
     } else {
 
+        // completing the hand 
         handRunning = false;
 
+        document.getElementById('hit').style.visibility = 'hidden';
+        document.getElementById('hold').style.visibility = 'hidden';
 
+        dealerHand.revealHand();
+        dealerHand.displayHand();
+
+        // check for natural 21 on player 
+
+        if ( (playerHand.evaluateHand() == 21 
+            && (playerHand.numberOfCardsRemaining() == 2)) ){
+
+                // player has a natural 21 
+
+            if ( dealerHand.evaluateHand() !== 21 ) gameWon = BONUS;
+
+        } else {
+
+            while ( dealerHand.evaluateHand() < 17 ){
+                dealerHand.addCard( theDeck.dealCard() );
+                dealerHand.revealHand();
+                dealerHand.displayHand();
+            }
+
+            if ( dealerHand.evaluateHand() > 21 ){
+
+                // dealer busted 
+                gameWon = WIN;
+
+            } else if ( dealerHand.evaluateHand() == playerHand.evaluateHand() ) {
+                    
+                    gameWon = TIE;
+
+                } else if ( dealerHand.evaluateHand() < playerHand.evaluateHand()) {
+                        gameWon = WIN;
+                    } else 
+                        gameWon = LOSE;
+        }
     }
+   
 }
+
+function addCard() {
+
+// if you are here hit is visible and hold is visible 
+
+    playerHand.addCard( theDeck.dealCard() );
+    playerHand.revealHand();
+    playerHand.displayHand();
+
+    if (playerHand.evaluateHand() == 21 ){  
+        document.getElementById('hit').style.visibility = 'hidden';
+        document.getElementById('hold').style.visibility = 'hidden';
+        runHand();  
+    } else if ( playerHand.evaluateHand() > 21 ){
+
+            // player busts
+            document.getElementById('hit').style.visibility = 'hidden';
+            document.getElementById('hold').style.visibility = 'hidden';
+
+        } 
+}
+
+
 
