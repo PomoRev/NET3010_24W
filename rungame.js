@@ -1,80 +1,56 @@
-// Run Game - testing script
+// Game logic as functions that use the objects for cards and players
+// Prof. Frank Emanuel (c) 2024 
+
+// constants and globals 
 
 const LOSE = 0, BONUS = 2, WIN = 1, TIE = 47;
 
 let gameWon = LOSE;
 
+// create a deck object 
+
 theDeck = new Deck ( 1, 0 );
 theDeck.shuffle();
 
-
-console.log( " created a deck and shuffled it " );
-
-// deal a card to eachplayer then the dealer until two cards 
-// each and flip one dealer card and both player cards
+// create the two players and set up the screen elements 
 
 dealer = new Player ( 0, "none", "dealerhand");
-
 playerOne = new Player ( 70, "playerchips", "playerhand");
-
-// playerOne.hand.addCard( theDeck.dealCard() );
-// playerOne.hand.addCard( theDeck.dealCard() );
-// // playerOne.hand.addCard( theDeck.dealCard() );
-
-// playerOne.hand.revealHand();
-// playerOne.hand.displayHand();
-
-// console.log( "player has " + playerOne.hand.evaluateHand() );
 
 playerOne.displayMoney();
 playerOne.displayWager();
 
-/* dealerHand = new Hand("dealerhand");
-playerHand = new Hand("playerhand");
+function startGame() {
 
-console.log( "length of deck before deal = " + theDeck.numberOfCardsRemaining() );
+    // disable the play again button and remove any messages
 
-playerHand.addCard( theDeck.dealCard() );
-dealerHand.addCard( theDeck.dealCard() );
-playerHand.addCard( theDeck.dealCard() );
-dealerHand.addCard( theDeck.dealCard() );
-playerHand.addCard( theDeck.dealCard() );
+    document.getElementById('endgame').style.display = 'none';
+    document.getElementById('playagain').style.visibility = 'hidden';
 
-console.log( "length of deck after deal = " + theDeck.numberOfCardsRemaining() );
+    // assume game is a loss until we know otherwise (global)
 
-playerHand.cards[0].flip();
-playerHand.cards[1].flip();
-playerHand.cards[2].flip();
-dealerHand.cards[1].flip();
+    gameWon = LOSE;
+    
+    // check to see if the deck has less than 50% of cards, if not shuffle it
 
-playerHand.displayHand();
-dealerHand.displayHand();
+    if ( theDeck.numberOfCardsRemaining() < (DECKSIZE / 2) )
+        theDeck.shuffle();
 
-document.getElementById("hold").style.visibility = "visible";
+    // ante 10 chips 
 
-function revealHands() {
+    bid( 10 );
 
-    dealerHand.revealHand();
-    dealerHand.displayHand();
+    // enable bid and hold 
+
+    if ( playerOne.chipsLeft() > 0 )
+        document.getElementById('bid').style.visibility = 'visible';
+    
+    document.getElementById('hold').style.visibility = 'visible';
 
 }
 
-
- */
-
 /* steps for playing the game:
-    0) disable play again button
-    1) check to see if the deck has less than 50% of cards 
-        1a) if so shuffle
-    2) take an ante of 10 chips from each player add to pot
-    3) enable the bid button and the hold button 
-    4) bidding adds 10 chips to pot each time it is pressed as long 
-       as there are at least 10 chips in their chipstack.
-    5) hold button starts the game 
-    6) deal one card, face up to player 
-    7) deal one card, face down to the dealer
-    8) deal one card, face up to player 
-    9) deal one card, face up to the dealer 
+
     10) evaluate player hand, if 21
         10a) disable hit button 
     11) else if hit button pressed
@@ -102,49 +78,7 @@ function revealHands() {
             12ib) set win condition to WIN
     13) display response based on win condition
     14) activate a play again button
-        
-
-
- */
-
-function bid( amount ) {
-
-    document.getElementById('endgame').style.display = 'none';
-
-    playerOne.betMoney( 10 );
-    playerOne.displayMoney();
-    playerOne.displayWager();
-    if ( playerOne.chipsLeft() < 10 )  
-    document.getElementById('bid').style.visibility = 'hidden';
-} 
-
-function startGame() {
-
-    // disable the play again button
-
-    document.getElementById('endgame').style.display = 'none';
-
-    document.getElementById('playagain').style.visibility = 'hidden';
-    gameWon = LOSE;
-    
-    // check to see if the deck has less than 50% of cards 
-
-    if ( theDeck.numberOfCardsRemaining() < (DECKSIZE / 2) )
-        theDeck.shuffle();
-
-    // ante 10 chips 
-
-    playerOne.betMoney( 10 );
-    playerOne.displayMoney();
-    playerOne.displayWager();    
-
-    // enable bid and hold 
-
-    if ( playerOne.chipsLeft() > 0 )
-        document.getElementById('bid').style.visibility = 'visible';
-    document.getElementById('hold').style.visibility = 'visible';
-
-}
+         */
 
 function runHand() {
 
@@ -157,14 +91,10 @@ function runHand() {
         dealerHand = new Hand("dealerhand");
         playerHand = new Hand("playerhand");
 
-console.log( "length of deck before deal = " + theDeck.numberOfCardsRemaining() );
-
         playerHand.addCard( theDeck.dealCard() );
         dealerHand.addCard( theDeck.dealCard() );
         playerHand.addCard( theDeck.dealCard() );
         dealerHand.addCard( theDeck.dealCard() );
-
-console.log( "length of deck after deal = " + theDeck.numberOfCardsRemaining() );
 
         playerHand.cards[0].flip();
         playerHand.cards[1].flip();
@@ -176,15 +106,16 @@ console.log( "length of deck after deal = " + theDeck.numberOfCardsRemaining() )
         document.getElementById('bid').style.visibility = 'hidden';
 
         if (playerHand.evaluateHand() !== 21 ){    
-console.log( playerHand.evaluateHand() + " current hand value");
             document.getElementById('hit').style.visibility = 'visible';
             document.getElementById('hold').style.visibility = 'visible';
         } else {
             runHand();
         }
+
     } else {
 
         // completing the hand 
+
         handRunning = false;
 
         document.getElementById('hit').style.visibility = 'hidden';
@@ -193,12 +124,12 @@ console.log( playerHand.evaluateHand() + " current hand value");
         dealerHand.revealHand();
         dealerHand.displayHand();
 
-        // check for natural 21 on player 
+        // check for natural 21 on player only a natural 21 for dealer will matter
 
         if ( (playerHand.evaluateHand() == 21 
             && (playerHand.numberOfCardsRemaining() == 2)) ){
 
-                // player has a natural 21 
+        // player has a natural 21 
 
             if ( dealerHand.evaluateHand() !== 21 ) gameWon = BONUS;
 
@@ -212,7 +143,8 @@ console.log( playerHand.evaluateHand() + " current hand value");
 
             if ( dealerHand.evaluateHand() > 21 ){
 
-                // dealer busted 
+        // dealer busted 
+
                 gameWon = WIN;
 
             } else if ( dealerHand.evaluateHand() == playerHand.evaluateHand() ) {
@@ -220,14 +152,14 @@ console.log( playerHand.evaluateHand() + " current hand value");
                     gameWon = TIE;
 
                 } else if ( dealerHand.evaluateHand() < playerHand.evaluateHand()) {
+
                         gameWon = WIN;
-                    } else 
-                        gameWon = LOSE;
+
+                    } else gameWon = LOSE;
         }
 
         endGame();
     }
-   
 }
 
 function addCard() {
@@ -239,12 +171,15 @@ function addCard() {
     playerHand.displayHand();
 
     if (playerHand.evaluateHand() == 21 ){  
+
         document.getElementById('hit').style.visibility = 'hidden';
         document.getElementById('hold').style.visibility = 'hidden';
         runHand();  
+
     } else if ( playerHand.evaluateHand() > 21 ){
 
-            // player busts
+    // player busts
+
             document.getElementById('hit').style.visibility = 'hidden';
             document.getElementById('hold').style.visibility = 'hidden';
 
@@ -258,6 +193,7 @@ function endGame() {
     // deal with payouts and messaging 
 
     switch (gameWon) {
+
         case LOSE:
                 document.getElementById('endgame').innerText = "You have lost!";
             break;
@@ -273,6 +209,7 @@ function endGame() {
             document.getElementById('endgame').innerText = "Big winner!!!";
             playerOne.addMoney( playerOne.getWager() * 2.5 );
             break;
+
     }
 
     document.getElementById('endgame').style.display = 'block';
@@ -281,12 +218,25 @@ function endGame() {
     playerOne.displayMoney();
     playerOne.displayWager();
 
-    playerHand.
+    // playerHand.
 
     document.getElementById('playagain').style.visibility = 'visible';
 
     console.log("button made visible");
 
 }
+
+function bid( amount ) {
+
+    document.getElementById('endgame').style.display = 'none';
+
+    playerOne.betMoney( 10 );
+    playerOne.displayMoney();
+    playerOne.displayWager();
+    
+    if ( playerOne.chipsLeft() < 10 )  
+    document.getElementById('bid').style.visibility = 'hidden';
+
+} 
 
 
