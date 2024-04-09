@@ -116,7 +116,7 @@ function Hand( holder ){
             numberOfCardsRemaining()  - returns the number of cards left in the hand.
             displayHand()   - randomizes the deck array using a Fisher-Yates algorithm.
             evaluateHand()  - returns the value of the hand using Black Jack Rules.
-            muckCard()      - discards a card from the hand.
+            muckHand()      - discards cards from hand.
             revealHand()    - turns all the cards in the hand face up.
     */    
    
@@ -327,10 +327,13 @@ Hand.prototype.evaluateHand = function () {
     return handValue;
 }
 
-Hand.prototype.muckCard = function ( cardOffset ) {
+Hand.prototype.muckHand = function ( ) {
 
     // build an algorithm
-    
+
+    while( this.cards.length > 0 ){
+        this.cards.pop();
+    }
     
 }
 
