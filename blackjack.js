@@ -201,7 +201,7 @@ Deck.prototype.dealCard = function () { return this.deck.pop(); }
 Deck.prototype.numberOfCardsRemaining = function () { return this.deck.length; }
 Deck.prototype.shuffle = function () {
 
-        /*  Fisher Yates Array Shuffle Algorithm (modified)
+    /*  Fisher Yates Array Shuffle Algorithm (modified)
 
         1.  Determine the size of the array, we will start at one end 
             of the array and move through the array.
@@ -219,9 +219,6 @@ Deck.prototype.shuffle = function () {
     for ( i = (this.deck.length - 1); i > 1; i--) {
 
         let randomTarget = Math.floor(Math.random() * (i+1));
-
-// console.log ( "swapping " + i + " with " + randomTarget );
-
         let temp = this.deck[i];
         this.deck[i] = this.deck[randomTarget];
         this.deck[randomTarget] = temp;
@@ -301,8 +298,6 @@ Hand.prototype.evaluateHand = function () {
 
     for ( aCard of this.cards ){
 
-        console.log( "next card " + aCard.returnValue() + "and " + handValue )
-
         if ( aCard.returnValue() == ACE ) {
             
             aces += 1;
@@ -317,8 +312,6 @@ Hand.prototype.evaluateHand = function () {
 
     while ( (handValue > 21) && (aces > 0) ){
         
-        console.log( "aces removal machine " + handValue );
-
         handValue -= 10;
         aces -= 1;
 
@@ -329,7 +322,7 @@ Hand.prototype.evaluateHand = function () {
 
 Hand.prototype.muckHand = function ( ) {
 
-    // build an algorithm
+    // mucks a complete hand of cards
 
     while( this.cards.length > 0 ){
         this.cards.pop();

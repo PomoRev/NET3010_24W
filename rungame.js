@@ -25,7 +25,7 @@ playerOne.displayWager();
 
 function startGame() {
 
-    // disable the play again button and remove any messages
+    // disable the play again button and remove any messages and cards
 
     document.getElementById('endgame').style.display = 'none';
     document.getElementById('playagain').style.visibility = 'hidden';
@@ -47,14 +47,26 @@ function startGame() {
 
     // ante 10 chips 
 
-    bid( 10 );
+    if ( playerOne.chipsLeft() < 10 ) {
+
+    // gambling addiction message and rebuy
+
+        document.getElementById('hit').style.visibility = 'hidden';
+        document.getElementById('hold').style.visibility = 'hidden';
+        document.getElementById('playagain').style.visibility = 'visible';
+        document.getElementById('warning').style.display = 'block';
+
+    } else { 
+        
+        bid( 10 );
 
     // enable bid and hold 
 
-    if ( playerOne.chipsLeft() > 0 )
-        document.getElementById('bid').style.visibility = 'visible';
+        if ( playerOne.chipsLeft() > 0 )
+            document.getElementById('bid').style.visibility = 'visible';
+        document.getElementById('hold').style.visibility = 'visible';
     
-    document.getElementById('hold').style.visibility = 'visible';
+    }
 
 }
 
@@ -197,8 +209,6 @@ function endGame() {
 
     document.getElementById('playagain').style.visibility = 'visible';
 
-    console.log("button made visible");
-
 }
 
 function bid( amount ) {
@@ -214,4 +224,12 @@ function bid( amount ) {
 
 } 
 
+function rebuy() {
+
+    playerOne.addMoney( 100 );
+    playerOne.displayMoney();
+
+    document.getElementById('warning').style.display = 'none';
+
+}
 
